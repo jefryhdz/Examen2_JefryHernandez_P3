@@ -15,8 +15,12 @@ class Archivo{
      int validarnuevo;
 	public:
     Archivo(string);
-    FILE operator<<(string&);
-		bool operator>>(string&);
+    Archivo();
+    friend ostream& operator<<(ostream&,Archivo&);
+		friend istream& operator>>(istream&,Archivo&);
+		string getFileName();
+		void setNumero(int);
+		int getNumero();
 
 
 };
