@@ -103,71 +103,70 @@ istream& operator>>(istream& in,Archivo& arv){
                 game=true;
             }
             cont++;
-            //cout<<"JOH"<<endl;
-          } while(!game);
-          ofstream archiv(arc.c_str(),std::ios::trunc);
-          if (archiv.is_open()) {
-            archiv<<texto2;
-          //  cout<<"sd"<<endl;
-          }
-          if (contstack>0) {
-            do {
-              cout<<endl;
-              cout<<"Desea borrar la ultima linea:"<<endl;
-              cout<<"1. Si"<<endl;
-              cout<<"2. NO"<<endl;
-              delet="";
-              cin>>delet;
+              //cout<<"JOH"<<endl;
+            } while(!game);
+            ofstream archiv(arc.c_str(),std::ios::trunc);
+            if (archiv.is_open()) {
+              archiv<<texto2;
+            //  cout<<"sd"<<endl;
+            }
+            if (contstack>0) {
+              do {
+                cout<<endl;
+                cout<<"Desea borrar la ultima linea:"<<endl;
+                cout<<"1. Si"<<endl;
+                cout<<"2. NO"<<endl;
+                delet="";
+                cin>>delet;
 
-              borrar=atoi(delet.c_str());
-            } while(borrar<1||borrar>2);
-              if (borrar==1) {
-                int cont=0;
-                string texto;
-                string texto2;
-                bool game=false;
-                do {
+                borrar=atoi(delet.c_str());
+              } while(borrar<1||borrar>2);
+                if (borrar==1) {
+                  int cont=0;
+                  string texto;
+                  string texto2;
+                  bool game=false;
+                  do {
 
-                  if (cont!=validarnuevo-1) {
-                    getline(archivo,texto);
-                    texto2+=texto;
+                    if (cont!=validarnuevo-1) {
+                      getline(archivo,texto);
+                      texto2+=texto;
 
-                    texto2+="\n";
-                    cout<<cont+1<<endl;
-                    cout<<validarnuevo<<endl;
-                  }else if((cont+1)==validarnuevo){
+                      texto2+="\n";
+                      cout<<cont+1<<endl;
+                      cout<<validarnuevo<<endl;
+                    }else if((cont+1)==validarnuevo){
 
-                    cout<<"La linea que se va a borrar es"<<stack->pop()<<endl;
-                    contstack--;
-                    validarnuevo--;
-                    game=true;
+                      cout<<"La linea que se va a borrar es"<<stack->pop()<<endl;
+                      contstack--;
+                      validarnuevo--;
+                      game=true;
+                  }
+                  cont++;
+                  //cout<<"JOH"<<endl
+                } while(!game&&contstack<1);
+                ofstream archiv(arc.c_str(),std::ios::trunc);
+                if (archiv.is_open()) {
+                  archiv<<texto2;
+                //  cout<<"sd"<<endl;
                 }
-                cont++;
-                //cout<<"JOH"<<endl;
-              } while(!game||contstack<1);
+            }
+
+          }else{
+
           }
-          //archivo.close();
-          ofstream archiv(arc.c_str(),std::ios::trunc);
-          if (archiv.is_open()) {
-            archiv<<texto2;
-          //  cout<<"sd"<<endl;
-          }
-
-
-
-        }else{
-
+          cout<<"Desea ingresar otra linea:"<<endl;
+          cout<<"1. Si"<<endl;
+          cout<<"2. NO"<<endl;
+          respuesta="";
+          cin>>respuesta;
+          answer=atoi(respuesta.c_str());
         }
-        cout<<"Desea ingresar otra linea:"<<endl;
-        cout<<"1. Si"<<endl;
-        cout<<"2. NO"<<endl;
-        respuesta="";
-        cin>>respuesta;
-        answer=atoi(respuesta.c_str());
-      } while(answer!=2);
-      arv.setNumero(validarnuevo);
+        } while(answer!=2);
+        arv.setNumero(validarnuevo);
+      }
     }
-  }
+
 }
 string Archivo::getFileName(){
   return arch;
